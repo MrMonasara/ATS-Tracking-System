@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131f;
+  --border: #1e1e32;
+  --purple: #6c63ff;
+  --green: #43e97b;
+  --red: #ff6584;
+  --orange: #f7971e;
+  --yellow: #ffd200;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: #e2e2f0;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Syne', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e4a;
+}
+
+/* Gauge animation */
+@keyframes gaugeStroke {
+  from { stroke-dashoffset: 339.292; }
+}
+
+.gauge-circle {
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Progress bar animation */
+.progress-fill {
+  transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Drag over state */
+.drag-over {
+  border-color: var(--purple) !important;
+  background-color: rgba(108, 99, 255, 0.08) !important;
+}
+
+/* Tab underline */
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--purple);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 0 24px rgba(108, 99, 255, 0.06);
+}
+
+/* Glow effect on score */
+.score-glow-green { filter: drop-shadow(0 0 12px rgba(67, 233, 123, 0.4)); }
+.score-glow-yellow { filter: drop-shadow(0 0 12px rgba(255, 210, 0, 0.4)); }
+.score-glow-orange { filter: drop-shadow(0 0 12px rgba(247, 151, 30, 0.4)); }
+.score-glow-red { filter: drop-shadow(0 0 12px rgba(255, 101, 132, 0.4)); }
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: all;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 280px;
+  max-width: 400px;
+  animation: toastIn 0.3s ease forwards;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6c63ff 0%, #43e97b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(19, 19, 31, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Shine animation on button */
+@keyframes shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-shine {
+  background: linear-gradient(
+    90deg,
+    #6c63ff 0%,
+    #8a84ff 40%,
+    #6c63ff 50%,
+    #4a44cc 100%
+  );
+  background-size: 200% auto;
+  transition: background-position 0.3s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.btn-shine:hover {
+  background-position: right center;
+  box-shadow: 0 0 32px rgba(108, 99, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-shine:active {
+  transform: translateY(0);
+}
+
+/* Keyword tags */
+.kw-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Pulse dot */
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
